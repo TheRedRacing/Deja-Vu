@@ -18,10 +18,10 @@
 <body class="antialiased">
     <section class="bg-zinc-900 w-full">
         <div class="flex items-center justify-between container mx-auto py-4">
-            <div class="inline-flex items-end gap-2">
+            <a href="/" class="inline-flex items-end gap-2">
                 <h1 class="text-xl font-bold text-white">Rocket League</h1>
-                <span class="text-xs text-gray-300">V 0.1</span>
-            </div>
+                <span class="text-xs text-gray-300">V 0.2</span>
+            </a>
 
             <div>
                 <p class="text-sm text-white">Last updated: {{ $lastUpdated }}</p>
@@ -72,7 +72,7 @@
                             </svg>
                         </span>
                     </button>
-                    <div :class="{'hidden': !open, 'flex': open}" class="absolute z-10 flex flex-col mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm scrollbar-thin scrollbar-track-zinc-100 scrollbar-thumb-zinc-300">
+                    <div :class="{'hidden': !open, 'flex': open}" class="hidden absolute z-10 flex-col mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm scrollbar-thin scrollbar-track-zinc-100 scrollbar-thumb-zinc-300">
                         <label for="all" class="inline-flex items-center gap-2 py-2 pl-3 pr-9 text-gray-900 select-none hover:bg-zinc-50">
                             <input type="radio" name="gameMode" id="all" value="all" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:outline-none" @if($filter['mode']=="all" ) ? checked : '' @endif>
                             <span class="font-normal block whitespace-nowrap">All</span>

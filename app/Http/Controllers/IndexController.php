@@ -10,7 +10,7 @@ class IndexController extends Controller
     {
         $sordBy = "timeMet";
         $sort = "desc";
-        $number = 50;
+        $number = 100;
         $mode = "all";
         $getData = $this->getData();
         $filteredData = $this->filter($getData->players, $sordBy, $sort, $mode, $number);
