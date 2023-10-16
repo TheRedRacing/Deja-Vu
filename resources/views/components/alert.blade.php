@@ -29,9 +29,6 @@
                 <p class="text-sm whitespace-nowrap font-medium text-gray-900">
                     {{ session('message') }}
                 </p>
-                <p class="mt-1 text-sm text-gray-500">
-
-                </p>
             </div>
         </div>
     </div>

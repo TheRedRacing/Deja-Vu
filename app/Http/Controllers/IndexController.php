@@ -33,7 +33,7 @@ class IndexController extends Controller
                 'mode' => $mode,
             ],
             'gameMode' => $dataController->getAllGameMode(),
-        ]);
+        ])->with(['status' => 'success', 'message' => 'Your data has been updated!']);
     }
 
     public function store(Request $request){
