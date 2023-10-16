@@ -20,7 +20,7 @@
         <div class="flex items-center justify-between container mx-auto py-4">
             <a href="/" class="inline-flex items-end gap-2">
                 <h1 class="text-xl font-bold text-white">Rocket League</h1>
-                <span class="text-xs text-gray-300">V 1.2</span>
+                <span class="text-xs text-gray-300">V 1.3</span>
             </a>
 
             <div>

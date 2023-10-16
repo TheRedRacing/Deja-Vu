@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class="container mx-auto py-6">
+    <section class="container mx-auto py-6 mb-20">
         <div>
             <h3 class="text-xl font-semibold leading-6 text-gray-900">Statistics</h3>
             <p class="mt-2 text-base text-gray-500">{{ $stats->players }} unique players were met in {{ $stats->party }} games.</p>
@@ -70,7 +70,7 @@
                 <button type="submit" class="rounded-md bg-zinc-900 px-4 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800">
                     Filter
                 </button>
-                <a href="/" class="rounded-md bg-zinc-900 px-4 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800">
+                <a href="/data" class="rounded-md bg-zinc-900 px-4 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800">
                     Reset
                 </a>
             </form>
@@ -93,13 +93,13 @@
                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Teammate
                             <div class="mt-2 flex gap-2 items-center">
-                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-green-50 p-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
                                     Victory
                                 </div>
-                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-red-50 p-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                                     Lose
                                 </div>
-                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-blue-50 p-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                                     Win Rate
                                 </div>
                             </div>
@@ -107,13 +107,13 @@
                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Opponent
                             <div class="mt-2 flex gap-2 items-center">
-                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-green-50 p-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
                                     Victory
                                 </div>
-                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-red-50 p-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                                     Lose
                                 </div>
-                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-blue-50 p-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                <div class="whitespace-nowrap flex-1 inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                                     Win Rate
                                 </div>
                             </div>
@@ -159,19 +159,27 @@
                                 @foreach ($player['data'] as $d => $data)
                                 @if ($filter['mode'] == 'all' || $filter['mode'] == $d)
                                 <div class="flex gap-2 items-center">
-                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-green-50 p-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 relative group">
+                                        {{$data['with']['wins']}}
                                         <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                         </svg>
-                                        {{$data['with']['wins']}}
+                                        <div class="opacity-0 absolute -top-8 left-1/2 -translate-x-1/2 pointer-events-auto group-hover:opacity-100 transition-opacity duration-150 inline-flex items-center rounded-md bg-zinc-800 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-zinc-800/10">
+                                            <p class="text-xs">You have lost {{$data['with']['wins']}} game whit this player</p>
+                                            <span class="absolute left-1/2 -translate-x-1/2 top-3 -z-10 block h-5 w-5 bg-zinc-800 rounded-sm rotate-45"></span>
+                                        </div>
                                     </div>
-                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-red-50 p-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 relative group">
+                                        {{$data['with']['losses']}}
                                         <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
-                                        {{$data['with']['losses']}}
+                                        <div class="opacity-0 absolute -top-8 left-1/2 -translate-x-1/2 pointer-events-auto group-hover:opacity-100 transition-opacity duration-150 inline-flex items-center rounded-md bg-zinc-800 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-zinc-800/10">
+                                            <p class="text-xs">You have lost {{$data['with']['losses']}} game whit this player</p>
+                                            <span class="absolute left-1/2 -translate-x-1/2 top-3 -z-10 block h-5 w-5 bg-zinc-800 rounded-sm rotate-45"></span>
+                                        </div>
                                     </div>
-                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-blue-50 p-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                                         {{$data['with']['winrate']}} %
                                     </div>
                                 </div>
@@ -184,19 +192,27 @@
                                 @foreach ($player['data'] as $d => $data)
                                 @if ($filter['mode'] == 'all' || $filter['mode'] == $d)
                                 <div class="flex gap-2 items-center">
-                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-green-50 p-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 relative group">
+                                        {{$data['against']['wins']}}
                                         <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                         </svg>
-                                        {{$data['against']['wins']}}
+                                        <div class="opacity-0 absolute -top-8 left-1/2 -translate-x-1/2 pointer-events-auto group-hover:opacity-100 transition-opacity duration-150 inline-flex items-center rounded-md bg-zinc-800 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-zinc-800/10">
+                                            <p class="text-xs">You have won {{$data['against']['wins']}} game against this player</p>
+                                            <span class="absolute left-1/2 -translate-x-1/2 top-3 -z-10 block h-5 w-5 bg-zinc-800 rounded-sm rotate-45"></span>
+                                        </div>
                                     </div>
-                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-red-50 p-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 relative group">
+                                        {{$data['against']['losses']}}
                                         <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
-                                        {{$data['against']['losses']}}
+                                        <div class="opacity-0 absolute -top-8 left-1/2 -translate-x-1/2 pointer-events-auto group-hover:opacity-100 transition-opacity duration-150 inline-flex items-center rounded-md bg-zinc-800 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-zinc-800/10">
+                                            <p class="text-xs">You have lost {{$data['against']['losses']}} game against this player</p>
+                                            <span class="absolute left-1/2 -translate-x-1/2 top-3 -z-10 block h-5 w-5 bg-zinc-800 rounded-sm rotate-45"></span>
+                                        </div>
                                     </div>
-                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-blue-50 p-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                    <div class="flex-1 inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                                         {{$data['against']['winrate']}} %
                                     </div>
                                 </div>
@@ -205,10 +221,17 @@
                             </div>
                         </td>
                         @else
-                        <td colspan="3" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <td colspan="3" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group relative">
                             <span class="w-full flex items-center justify-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
                                 No data
                             </span>
+                            <div class="opacity-0 absolute -top-6 left-1/2 -translate-x-1/2 pointer-events-auto group-hover:opacity-100 flex transition-opacity duration-150 items-center justify-between gap-x-6 bg-gray-900 px-2 py-1 sm:rounded">
+                                <p class="text-xs leading-6 text-white">
+                                    <strong class="font-semibold">No Data ?</strong>
+                                    <span>It's because you leave the game until the end of the match.</span>
+                                </p>
+                                <span class="absolute left-1/2 -translate-x-1/2 top-5 -z-10 block h-5 w-5 bg-black rounded-sm rotate-45"></span>
+                            </div>
                         </td>
                         @endif
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ date('H:i:s d.m.Y', strtotime($player['timeMet'])) }}</td>
