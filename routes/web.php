@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::post('/upload', [DataController::class, 'upload'])->name('upload');
 
+Route::get('/data', [IndexController::class, 'data'])->name('data');
 Route::post('/filter', [IndexController::class, 'store'])->name('store');

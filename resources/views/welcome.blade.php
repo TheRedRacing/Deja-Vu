@@ -1,34 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Rocket league</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-    <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="antialiased">
-    <section class="bg-zinc-900 w-full">
-        <div class="flex items-center justify-between container mx-auto py-4">
-            <a href="/" class="inline-flex items-end gap-2">
-                <h1 class="text-xl font-bold text-white">Rocket League</h1>
-                <span class="text-xs text-gray-300">V 0.2</span>
-            </a>
-
-            <div>
-                <p class="text-sm text-white">Last updated: {{ $lastUpdated }}</p>
-            </div>
-        </div>
-    </section>
-
+<x-app-layout>
     <section class="container mx-auto py-6">
         <div>
             <h3 class="text-xl font-semibold leading-6 text-gray-900">Statistics</h3>
@@ -105,24 +75,19 @@
                 </a>
             </form>
         </div>
-        <!-- 
-            Step 1 null
-            Step 2 asc 100 -> 0 or a -> z 
-            Step 3 desc 0 -> 100 or z -> a
-        -->
         <div class="mt-4 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
             <table id="players" class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 align-baseline">
-                            <x-filter-button step="{{ ($filter['sortBy'] == 'username' && $filter['sort'] == 'asc') ? 2 : (($filter['sortBy'] == 'username' && $filter['sort'] == 'desc') ? 3 : 1) }}">
+                            <button class="flex items-center gap-2 text-left text-sm font-semibold text-gray-900 align-baseline">
                                 Username
-                            </x-filter-button>
+                            </button>
                         </th>
                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 align-baseline">
-                            <x-filter-button step="{{ ($filter['sortBy'] == 'meetCount' && $filter['sort'] == 'asc') ? 2 : (($filter['sortBy'] == 'meetCount' && $filter['sort'] == 'desc') ? 3 : 1) }}">
+                            <button class="flex items-center gap-2 text-left text-sm font-semibold text-gray-900 align-baseline">
                                 Meet count
-                            </x-filter-button>
+                            </button>
                         </th>
                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 align-baseline">Game mode</th>
                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -159,9 +124,9 @@
                             </x-filter-button>
                         </th>
                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 align-baseline">
-                            <x-filter-button step="{{ ($filter['sortBy'] == 'updatedAt' && $filter['sort'] == 'asc') ? 2 : (($filter['sortBy'] == 'updatedAt' && $filter['sort'] == 'desc') ? 3 : 1) }}">
+                            <button class="flex items-center gap-2 text-left text-sm font-semibold text-gray-900 align-baseline">
                                 Last Update
-                            </x-filter-button>
+                            </button>
                         </th>
                     </tr>
                 </thead>
@@ -263,6 +228,4 @@
             </table>
         </div>
     </section>
-</body>
-
-</html>
+</x-app-layout>
