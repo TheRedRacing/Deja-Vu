@@ -21,8 +21,8 @@ Deja vu web app is a web interface for viewing data from the plug-in [DejaVu](ht
 - Add tooltip on no data column
 
 ### v1.2.0
-- Add Game mode filter
-- Add Select to display number of players
+- Add Game mode filter ( All game mode added )
+- Add Select to display number of players ( Default 25 players )
 
 ### v1.1.0
 - Add Home page with form page to upload player_count.json file
