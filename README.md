@@ -11,6 +11,11 @@ Deja vu web app is a web interface for viewing data from the plug-in [DejaVu](ht
 
 ## Changelog
 
+### v1.4.0
+- Add `Last meet` column
+- add sort to `Username`, `Meet Count`, `First Meet` and `Last Meet` column
+- I removed the statistical cards because they contained errors. The data didn't allow us to distinguish wins from losses accurately. For example, in Ranked Doubles mode, which is a 2 vs 2 format, if we    took the three players who played with me, a win would mean that one player would have a win as a team-mate, while the other two players would have a win as opponents. So that would have been counted as three wins for me.
+
 ### v1.3.0
 - Add tooltip on win and loss column
 - Add tooltip on no data column

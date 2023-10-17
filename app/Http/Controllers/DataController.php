@@ -27,17 +27,20 @@ class DataController extends Controller
     public function getData()
     {
         $json = session()->get('json');
+        if ($json == null) {
+            return null;
+        }
 
         /* decode json */
         $data = json_decode($json, true);
 
         $players = $this->getPlayers($data['players']);
 
-        $data = new \stdClass();
-        $data->lastUpdated = date('H:i:s d.m.Y');
-        $data->players = $players;
+        $dataObj = new \stdClass();
+        $dataObj->lastUpdated = date('H:i:s d.m.Y');
+        $dataObj->players = $players;
 
-        return $data;
+        return $dataObj;
     }
 
     private function getPlayers($data)
@@ -291,7 +294,7 @@ class DataController extends Controller
         return $dataFromMode;
     }
 
-    public function filter($players, $sortBy = "meetCount", $sort = "desc", $mode = 'all', $number = 50)
+    public function filter($players, $sortBy = "meetCount", $order = "desc", $mode = 'all', $number = 50)
     {
         /* Get all player from gamemode if not all  */
         if ($mode != "all") {
@@ -310,8 +313,8 @@ class DataController extends Controller
         /* Sort by */
         switch ($sortBy) {
             case ("meetCount"):
-                usort($players, function ($a, $b) use ($sort) {
-                    if ($sort == "desc") {
+                usort($players, function ($a, $b) use ($order) {
+                    if ($order == "desc") {
                         return $b['meetCount'] <=> $a['meetCount'];
                     } else {
                         return $a['meetCount'] <=> $b['meetCount'];
@@ -319,8 +322,8 @@ class DataController extends Controller
                 });
                 break;
             case ("username"):
-                usort($players, function ($a, $b) use ($sort) {
-                    if ($sort == "desc") {
+                usort($players, function ($a, $b) use ($order) {
+                    if ($order == "desc") {
                         return $b['username'] <=> $a['username'];
                     } else {
                         return $a['username'] <=> $b['username'];
@@ -328,12 +331,15 @@ class DataController extends Controller
                 });
                 break;
             case ("updatedAt"):
-                usort($players, function ($a, $b) use ($sort) {
+                usort($players, function ($a, $b) use ($order) {
+                    if ($a['updatedAt'] == null) {
+                        return 1;
+                    }
+                    
                     $dateA = strtotime($a['updatedAt']);
                     $dateB = strtotime($b['updatedAt']);
 
-                    if ($sort == "desc"
-                    ) {
+                    if ($order == "desc") {
                         return $dateB <=> $dateA;
                     } else {
                         return $dateA <=> $dateB;
@@ -341,12 +347,11 @@ class DataController extends Controller
                 });
                 break;
             case ("timeMet"):
-                usort($players, function ($a, $b) use ($sort) {
+                usort($players, function ($a, $b) use ($order) {
                     $dateA = strtotime($a['timeMet']);
                     $dateB = strtotime($b['timeMet']);
 
-                    if ($sort == "desc"
-                    ) {
+                    if ($order == "desc") {
                         return $dateB <=> $dateA;
                     } else {
                         return $dateA <=> $dateB;

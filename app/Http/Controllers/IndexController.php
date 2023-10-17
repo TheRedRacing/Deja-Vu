@@ -14,21 +14,24 @@ class IndexController extends Controller
 
     public function data() {
         $dataController = new DataController();
+        $getData = $dataController->getData();
+        if ($getData === null){
+            return redirect()->route('home')->with(['status' => 'error', 'message' => 'No data found!']);
+        }
 
         $sordBy = "timeMet";
-        $sort = "desc";
-        $number = 250;
+        $order = "desc";
+        $number = 25;
         $mode = "all";
-        $getData = $dataController->getData();
-        $filteredData = $dataController->filter($getData->players, $sordBy, $sort, $mode, $number);
+        $filteredData = $dataController->filter($getData->players, $sordBy, $order, $mode, $number);
 
-        return view('welcome', [
+        return view('data', [
             'lastUpdated' => $getData->lastUpdated,
             'players' => $filteredData->players,
             'stats' => $filteredData->stats,
             'filter' => [
                 'sortBy' => $sordBy,
-                'sort' => $sort,
+                'order' => $order,
                 'number' => $number,
                 'mode' => $mode,
             ],
@@ -38,21 +41,22 @@ class IndexController extends Controller
 
     public function store(Request $request){
         $dataController = new DataController();
-
-        $sordBy = "timeMet";
-        $sort = "desc";
+        $action = $request->action;
+        $sortBy = explode(',', $action)[0];
+        $order = explode(',', $action)[1];
         $number = $request->number;
         $mode = $request->gameMode;
-        $getData = $dataController->getData();
-        $filteredData = $dataController->filter($getData->players, $sordBy, $sort, $mode, $number);
 
-        return view('welcome', [
+        $getData = $dataController->getData();
+        $filteredData = $dataController->filter($getData->players, $sortBy, $order, $mode, $number);
+
+        return view('data', [
             'lastUpdated' => $getData->lastUpdated,
             'players' => $filteredData->players,
             'stats' => $filteredData->stats,
             'filter' => [
-                'sortBy' => $sordBy,
-                'sort' => $sort,
+                'sortBy' => $sortBy,
+                'order' => $order,
                 'number' => $number,
                 'mode' => $mode,
             ],

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::post('/upload', [DataController::class, 'upload'])->name('upload');
 
 Route::get('/data', [IndexController::class, 'data'])->name('data');
