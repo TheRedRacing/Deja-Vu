@@ -2,13 +2,17 @@
     <section class="container mx-auto pt-10 mb-20">
         <div>
             <h3 class="text-xl font-semibold leading-6 text-gray-900">Statistics</h3>
-            <p class="mt-2 text-base text-gray-500">{{ $stats->players }} unique players were met in {{ $stats->party }} games.</p>
+            <p class="mt-2 text-base text-gray-500">the result gave {{ $stats->players }} players out of {{ $stats->allPlayers }} players</p>
         </div>
 
         <form action="{{ route('store') }}" method="post">
             @csrf
             <div class="mt-4 flex justify-end gap-2">
-                <div class="flex justify-end items-center gap-2 w-1/2">
+                <div class="flex justify-end items-center gap-2 w-2/3">
+                    <div class="flex-1">
+                        <label for="username" class="sr-only">Username</label>
+                        <input type="username" name="username" id="username" value="{{ $filter['username'] }}" class="w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Search username" />
+                    </div>
                     <div class="flex-1 relative" x-data="{ open: false }" @click.away="open = false">
                         <button type="button" x-on:click="open = !open" class="w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
                             <span class="block whitespace-nowrap">

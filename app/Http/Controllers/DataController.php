@@ -364,44 +364,23 @@ class DataController extends Controller
             $players = array_slice($players, 0, $number);
         }
 
-        $stats = new \stdClass();
-        $stats->players = 0;
-        $stats->party = 0;
-        $stats->victory = 0;
-        $stats->lose = 0;
-        $stats->noData = 0;
-        $stats->winrate = 0;
-
-        foreach ($players as $key => $player) {
-            $stats->players++;
-            if ($player['data'] != null) {
-                foreach ($player['data'] as $gamemode => $d) {
-                    if ($mode == "all" || $mode == $gamemode) {
-                        $stats->victory += $d['with']['wins'];
-                        $stats->lose += $d['with']['losses'];
-                        $stats->victory += $d['against']['wins'];
-                        $stats->lose += $d['against']['losses'];
-                    }
-                }
-            } else {
-                $stats->noData++;
-            }
-        }
-
-        $stats->party = $stats->victory + $stats->lose + $stats->noData;
-
-        /* si $players array est pas vide */
-        if ($stats->victory != 0 || $stats->lose != 0) {
-            $stats->winrate = round($stats->victory / ($stats->victory + $stats->lose) * 100, 2);
-        }
 
         $filteredData = new \stdClass();
         $filteredData->players = $players;
-        $filteredData->stats = $stats;
 
         return $filteredData;
     }
     
+    public function search($players, $username)
+    {
+        $filteredPlayers = array_filter($players, function ($player) use ($username) {
+            $pattern = "/$username/i"; // Le "i" signifie que la recherche est insensible à la casse.
+            return preg_match($pattern, $player['username']);
+        });
+
+        return $filteredPlayers;
+    }
+
     public function getAllGameMode()
     {
         $gameMode = array();

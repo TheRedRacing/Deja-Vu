@@ -1,15 +1,19 @@
 # Deja Vu Web App
 
-Deja vu web app is a web interface for viewing data from the plug-in [DejaVu](https://bakkesplugins.com/plugins/view/55)
+Deja vu web app is a web interface for viewing data from the plug-in [Repository of DejaVu](https://github.com/adamk33n3r/Deja-Vu) for the game [Rocket League](https://www.rocketleague.com/).
 
 ## Overview
 - Display a list of all the player you meet in rocket league
 - Display number of win with each player
 - Display number of loss with each player
 - Display number of win rate with each player
-- Can make sort by number of meeting 
+- Can make sort data by column ascending or descending
 
 ## Changelog
+
+### v1.4.1
+- publish on web site : [rocketleague.theredracing.ch](http://rocketleague.theredracing.ch/)
+- add username search bar
 
 ### v1.4.0
 - Add `Last meet` column

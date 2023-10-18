@@ -19,46 +19,71 @@ class IndexController extends Controller
             return redirect()->route('home')->with(['status' => 'error', 'message' => 'No data found!']);
         }
 
-        $sordBy = "timeMet";
+        $sortBy = "timeMet";
         $order = "desc";
         $number = 25;
         $mode = "all";
-        $filteredData = $dataController->filter($getData->players, $sordBy, $order, $mode, $number);
+        $username = null;
 
-        return view('data', [
-            'lastUpdated' => $getData->lastUpdated,
-            'players' => $filteredData->players,
-            'stats' => $filteredData->stats,
-            'filter' => [
-                'sortBy' => $sordBy,
-                'order' => $order,
-                'number' => $number,
-                'mode' => $mode,
-            ],
-            'gameMode' => $dataController->getAllGameMode(),
-        ])->with(['status' => 'success', 'message' => 'Your data has been updated!']);
-    }
+        $stats = new \stdClass();
+        $stats->allPlayers = count($getData->players);
 
-    public function store(Request $request){
-        $dataController = new DataController();
-        $action = $request->action;
-        $sortBy = explode(',', $action)[0];
-        $order = explode(',', $action)[1];
-        $number = $request->number;
-        $mode = $request->gameMode;
-
-        $getData = $dataController->getData();
+        if ($username !== null) {
+            $getData->players = $dataController->search($getData->players, $username);
+        }
         $filteredData = $dataController->filter($getData->players, $sortBy, $order, $mode, $number);
 
+        $stats->players = count($filteredData->players);
+
         return view('data', [
             'lastUpdated' => $getData->lastUpdated,
             'players' => $filteredData->players,
-            'stats' => $filteredData->stats,
+            'stats' => $stats,
             'filter' => [
                 'sortBy' => $sortBy,
                 'order' => $order,
                 'number' => $number,
                 'mode' => $mode,
+                'username' => $username,
+            ],
+            'gameMode' => $dataController->getAllGameMode(),
+        ])->with(['status' => 'success', 'message' => 'Your data has been updated!']);
+    }
+
+    public function filter(){
+        return $this->data();
+    }
+
+    public function store(Request $request){
+        $dataController = new DataController();
+        $action = $request->action ?? "timeMet,desc";
+        $sortBy = explode(',', $action)[0];
+        $order = explode(',', $action)[1];
+        $number = $request->number;
+        $username = $request->username ?? null;
+        $mode = $request->gameMode;
+
+        $getData = $dataController->getData();
+        $stats = new \stdClass();
+        $stats->allPlayers = count($getData->players);        
+
+        if ($username !== null) {
+            $getData->players = $dataController->search($getData->players, $username);
+        }
+        $filteredData = $dataController->filter($getData->players, $sortBy, $order, $mode, $number);
+
+        $stats->players = count($filteredData->players);
+
+        return view('data', [
+            'lastUpdated' => $getData->lastUpdated,
+            'players' => $filteredData->players,
+            'stats' => $stats,
+            'filter' => [
+                'sortBy' => $sortBy,
+                'order' => $order,
+                'number' => $number,
+                'mode' => $mode,
+                'username' => $username,
             ],
             'gameMode' => $dataController->getAllGameMode(),
         ]);
