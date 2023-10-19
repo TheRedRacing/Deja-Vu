@@ -13,6 +13,6 @@ class appLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts\app-layout');
+        return view('layouts.applayout');
     }
 }

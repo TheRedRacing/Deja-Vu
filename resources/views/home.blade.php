@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-applayout>
     <div class="flex-1 bg-zinc-900 relative">
         <div class="relative isolate">
             <div class="absolute inset-x-0 -top-40 -z-50 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -37,4 +37,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-applayout>
