@@ -24,6 +24,7 @@ class IndexController extends Controller
         $number = 25;
         $mode = "all";
         $username = null;
+        $hideNoData = false;
 
         $stats = new \stdClass();
         $stats->allPlayers = count($getData->players);
@@ -31,7 +32,7 @@ class IndexController extends Controller
         if ($username !== null) {
             $getData->players = $dataController->search($getData->players, $username);
         }
-        $filteredData = $dataController->filter($getData->players, $sortBy, $order, $mode, $number);
+        $filteredData = $dataController->filter($getData->players, $sortBy, $order, $mode, $number, $hideNoData);
 
         $stats->players = count($filteredData->players);
 
@@ -45,6 +46,7 @@ class IndexController extends Controller
                 'number' => $number,
                 'mode' => $mode,
                 'username' => $username,
+                'hideNoData' => $hideNoData,
             ],
             'gameMode' => $dataController->getAllGameMode(),
         ])->with(['status' => 'success', 'message' => 'Your data has been updated!']);
@@ -56,12 +58,13 @@ class IndexController extends Controller
 
     public function store(Request $request){
         $dataController = new DataController();
-        $action = $request->action ?? "timeMet,desc";
+        $action = $request->action ?? $request->Lastaction ?? "timeMet,desc";
         $sortBy = explode(',', $action)[0];
         $order = explode(',', $action)[1];
         $number = $request->number;
         $username = $request->username ?? null;
         $mode = $request->gameMode;
+        $hideNoData = $request->hideNoData ?? "show";
 
         $getData = $dataController->getData();
         $stats = new \stdClass();
@@ -70,7 +73,7 @@ class IndexController extends Controller
         if ($username !== null) {
             $getData->players = $dataController->search($getData->players, $username);
         }
-        $filteredData = $dataController->filter($getData->players, $sortBy, $order, $mode, $number);
+        $filteredData = $dataController->filter($getData->players, $sortBy, $order, $mode, $number, $hideNoData);
 
         $stats->players = count($filteredData->players);
 
@@ -84,6 +87,7 @@ class IndexController extends Controller
                 'number' => $number,
                 'mode' => $mode,
                 'username' => $username,
+                'hideNoData' => $hideNoData,
             ],
             'gameMode' => $dataController->getAllGameMode(),
         ]);

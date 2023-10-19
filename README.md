@@ -11,6 +11,10 @@ Deja vu web app is a web interface for viewing data from the plug-in [Repository
 
 ## Changelog
 
+### V1.5.0
+- Add Toogle button to display players with no data (default show)
+- Fix bug with sort `Meet Count` column when you select one game mode, the sort is not correct 
+
 ### v1.4.1
 - publish on web site : [rocketleague.theredracing.ch](http://rocketleague.theredracing.ch/)
 - add username search bar

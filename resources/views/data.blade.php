@@ -7,8 +7,13 @@
 
         <form action="{{ route('store') }}" method="post">
             @csrf
+            <input type="hidden" name="Lastaction" value="{{ $filter['sortBy'] }},{{ $filter['order'] }}" />
+
             <div class="mt-4 flex justify-end gap-2">
                 <div class="flex justify-end items-center gap-2 w-2/3">
+                    <div>
+                        <x-toogle checked="{{ $filter['hideNoData'] == 'hide' ? true : false }}" />
+                    </div>
                     <div class="flex-1">
                         <label for="username" class="sr-only">Username</label>
                         <input type="username" name="username" id="username" value="{{ $filter['username'] }}" class="w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Search username" />

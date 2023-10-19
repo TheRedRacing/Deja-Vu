@@ -294,7 +294,7 @@ class DataController extends Controller
         return $dataFromMode;
     }
 
-    public function filter($players, $sortBy = "meetCount", $order = "desc", $mode = 'all', $number = 50)
+    public function filter($players, $sortBy = "meetCount", $order = "desc", $mode = 'all', $number = 50, $hideNoData = "show")
     {
         /* Get all player from gamemode if not all  */
         if ($mode != "all") {
@@ -307,6 +307,21 @@ class DataController extends Controller
                     }
                 }
                 return false;
+            });
+
+            foreach ($players as $key => $player) {
+                foreach ($player['data'] as $gamemode => $d) {
+                    if ($gamemode == $mode) {
+                        $players[$key]['meetCount'] = $d['gamesPlayed'];
+                    }
+                }
+            }
+        }
+
+        /* Hide player with no data */
+        if ($hideNoData == "hide") {
+            $players = array_filter($players, function ($player) {
+                return $player['data'] != null;
             });
         }
 
@@ -363,7 +378,6 @@ class DataController extends Controller
         if ($number != "all") {
             $players = array_slice($players, 0, $number);
         }
-
 
         $filteredData = new \stdClass();
         $filteredData->players = $players;

@@ -42,7 +42,7 @@
                         <p class="text-zinc-400 text-sm">You can find your data in the <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">\data\dejavu</span> folder in your BakkesMod installation directory.</p>
                         <p class="text-zinc-400 text-sm">The file you need to upload is called <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">player_counter.json</span>.</p>
                     </div>
-                    <div class="mt-4 flex items-center justify-between space-x-3 border-t border-gray-200 px-2 py-2 sm:px-3">
+                    <div class="mt-4 border-t border-gray-200 px-2 py-2 sm:px-3">
                         <label class="relative flex-1">
                             <span class="sr-only">File</span>
                             <input name="file" type="file" class="block w-full text-sm text-slate-500
@@ -51,13 +51,12 @@
                                     file:text-sm file:font-semibold
                                     file:bg-violet-50 file:text-blue-500
                                     hover:file:bg-blue-100 hover:file:cursor-pointer" value="{{ old('file') }}" placeholder="Upload your data" required accept="json" />
-
-                            @error('file')
-                            <div class="absolute inset-y-0 right-2 flex items-center">
-                                <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">{{ $message }}</span>
-                            </div>
-                            @enderror
                         </label>
+                        @error('file')
+                        <div class="mt-4 flex items-center">
+                            <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">{{ $message }}</span>
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">

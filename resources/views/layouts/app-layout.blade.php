@@ -20,13 +20,13 @@
         <div class="flex items-center justify-between container mx-auto py-4">
             <a href="/" class="inline-flex items-end gap-2">
                 <h1 class="text-xl font-bold text-white">Rocket League</h1>
-                <span class="text-xs text-gray-300">V 1.3</span>
+                <span class="text-xs text-gray-300">V 1.5</span>
             </a>
 
             <div class="flex items-center gap-4">
                 @if (session('lastUpdated') !== null)
                 <p class="text-sm text-white">Last updated at {{ date('H:i:s', strtotime(session('lastUpdated'))) }}</p>
-                <x-popup>
+                <x-popup setOpen="{{ ($errors->any()) ? 'true' : '' }}">
                     <x-slot name="trigger">
                         <button type="button" class="h-9 w-9 bg-zinc-700 inline-flex items-center justify-center text-zinc-400 rounded-full hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

@@ -13,7 +13,13 @@
                         <p class="mt-6 text-lg leading-8 text-gray-300">But that's not all! Thanks to our exclusive website, specially designed for the BakkesMod DejaVu plugin, you can now dive deep into your game statistics and discover which teammate has been your most victorious partner.</p>
                         <p class="mt-6 text-lg leading-8 text-gray-300">No more doubts—improve your game and strengthen your team bonds now. Join DejaVu and immerse yourself in the exciting world of game data!</p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
-                            <x-popup>
+                            @if (session('lastUpdated') !== null)
+                            <a href="/data" type="button" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
+                                <span>Get started</span>
+                                <span class="sr-only"> with DejaVu</span>
+                            </a>
+                            @else
+                            <x-popup setOpen="{{ ($errors->any()) ? 'true' : '' }}">
                                 <x-slot name="trigger">
                                     <button type="button" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
                                         <span>Get started</span>
@@ -21,6 +27,7 @@
                                     </button>
                                 </x-slot>
                             </x-popup>
+                            @endif
                             <a href="https://github.com/TheRedRacing/Deja-Vu" target="_blank" class="relative text-sm font-semibold leading-6 text-white hover:underline group">View on GitHub <span class="absolute -right-4 transition-transform duration-300 group-hover:translate-x-2" aria-hidden="true">→</span></a>
                         </div>
                     </div>
