@@ -1,4 +1,4 @@
-<x-applayout>
+<x-app-layout>
     <div class="flex-1 bg-zinc-900 relative">
         <div class="relative isolate">
             <div class="absolute inset-x-0 -top-40 -z-50 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -29,7 +29,7 @@
                             <a href="https://github.com/TheRedRacing/Deja-Vu" target="_blank" class="relative text-sm font-semibold leading-6 text-white hover:underline group">View on GitHub <span class="absolute -right-4 transition-transform duration-300 group-hover:translate-x-2" aria-hidden="true">→</span></a>
                         </div>
                     </div>
-                    <img src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png" alt="App screenshot" width="2432" height="1442" class="mt-16 rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10 sm:mt-24">
+                    <img src="{{ asset('images/app.png') }}" alt="App screenshot" width="2432" height="1442" class="mt-16 rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10 sm:mt-24">
                 </div>
             </div>
             <div class="absolute inset-x-0 top-[calc(100vh-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100vh-30rem)]" aria-hidden="true">
@@ -37,4 +37,4 @@
             </div>
         </div>
     </div>
-</x-applayout>
+</x-app-layout>

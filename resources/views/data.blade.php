@@ -1,4 +1,4 @@
-<x-applayout>
+<x-app-layout>
     <section class="container mx-auto pt-10 mb-20">
         <div>
             <h3 class="text-xl font-semibold leading-6 text-gray-900">Statistics</h3>
@@ -244,4 +244,4 @@
             </div>
         </form>
     </section>
-</x-applayout>
+</x-app-layout>
