@@ -9,6 +9,8 @@ Deja vu web app is a web interface for viewing data from the plug-in [Repository
 - Display number of win rate with each player
 - Can make sort data by column ascending or descending
 
+<img src="public/images/app.png" alt="app screenShot" />
+
 ## Changelog
 
 ### V1.5.1
