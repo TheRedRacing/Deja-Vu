@@ -1,4 +1,4 @@
-<div id="closeAlert" class="absolute right-0 top-2 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+<div id="closeAlert" class="absolute right-2 top-2 z-50 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
     <div class="p-4">
         <div class="flex items-start">
             <div class="flex-shrink-0">

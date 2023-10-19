@@ -25,7 +25,7 @@
         }
     })" x-on:close.stop="open = false" x-on:keydown.escape.window="open = false" x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()" x-on:keydown.shift.tab.prevent="prevFocusable().focus()">
     <div @click="open = ! open">
-        {{ $trigger }}
+        {{ $slot }}
     </div>
 
     <div class="fixed inset-0 flex justify-center items-center z-10" x-show="open">

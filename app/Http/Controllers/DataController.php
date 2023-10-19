@@ -43,6 +43,11 @@ class DataController extends Controller
         return $dataObj;
     }
 
+    public function deleteData(){
+        session()->forget('json');
+        session()->forget('lastUpdated');
+    }
+
     private function getPlayers($data)
     {
         $players = array();

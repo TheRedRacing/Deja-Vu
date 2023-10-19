@@ -20,3 +20,4 @@ Route::post('/upload', [DataController::class, 'upload'])->name('upload');
 Route::get('/data', [IndexController::class, 'data'])->name('data');
 Route::get('/filter', [IndexController::class, 'filter'])->name('filter');
 Route::post('/filter', [IndexController::class, 'store'])->name('store');
+Route::get('/delete', [IndexController::class, 'delete'])->name('delete');

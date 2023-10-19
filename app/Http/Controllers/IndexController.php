@@ -49,7 +49,7 @@ class IndexController extends Controller
                 'hideNoData' => $hideNoData,
             ],
             'gameMode' => $dataController->getAllGameMode(),
-        ])->with(['status' => 'success', 'message' => 'Your data has been updated!']);
+        ]);
     }
 
     public function filter(){
@@ -91,5 +91,11 @@ class IndexController extends Controller
             ],
             'gameMode' => $dataController->getAllGameMode(),
         ]);
+    }
+
+    public function delete(){
+        $dataController = new DataController();
+        $dataController->deleteData();
+        return redirect()->route('home')->with(['status' => 'success', 'message' => 'Your data has been deleted!']);        
     }
 }
