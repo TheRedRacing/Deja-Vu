@@ -57,6 +57,7 @@
                             <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">{{ $message }}</span>
                         </div>
                         @enderror
+                        <p class="mt-2 text-sm text-zinc-400">max file size : 10MB</p>
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
