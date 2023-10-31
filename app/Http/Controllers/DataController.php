@@ -9,7 +9,7 @@ class DataController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|mimetypes:json|max:300000',
+            'file' => 'required|file|mime:json|max:300000',
         ]);
 
         $file = $request->file('file');
